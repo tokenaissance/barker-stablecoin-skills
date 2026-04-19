@@ -39,13 +39,13 @@ cp -r barker-stablecoin-skills/*/SKILL.md .claude/skills/
 
 | Skill | What It Does | Data Source | Key Triggers |
 |-------|-------------|-------------|-------------|
-| [stablecoin-yield-radar](./stablecoin-yield-radar/) | Real-time APY rankings across CEX + DeFi | API `/stablecoin-yields` | "best stablecoin yield", "where to earn on USDC" |
-| [stablecoin-market-brief](./stablecoin-market-brief/) | Market overview: cap, distribution, APY trends vs US Treasury | API `/stablecoin-market` + `/stablecoin-apy-trend` | "stablecoin market cap", "USDT market share" |
+| [stablecoin-yield-radar](./stablecoin-yield-radar/) | Real-time APY rankings across DeFi | API `/defi/vaults` | "best stablecoin yield", "where to earn on USDC" |
+| [stablecoin-market-brief](./stablecoin-market-brief/) | Market overview: cap, distribution, APY trends vs US Treasury | API `/market/overview` + `/market/trend` | "stablecoin market cap", "USDT market share" |
 | [stablecoin-risk-check](./stablecoin-risk-check/) | Safety assessment: depeg history, reserves, audit status | Curated knowledge base | "is USDT safe", "stablecoin comparison" |
-| [yield-strategy-advisor](./yield-strategy-advisor/) | Personalized allocation by risk tolerance and capital size | API `/stablecoin-yields` | "yield strategy", "how to earn on stablecoins" |
-| [stablecoin-depeg-monitor](./stablecoin-depeg-monitor/) | Peg stability monitoring + historical depeg database | API + curated history | "depeg alert", "is my stablecoin safe right now" |
-| [stablecoin-yield-vs-tradfi](./stablecoin-yield-vs-tradfi/) | DeFi yields vs bank savings, Treasury, money market | API `/stablecoin-apy-trend` | "stablecoin vs savings account", "DeFi vs treasury" |
-| [stablecoin-chain-explorer](./stablecoin-chain-explorer/) | TVL distribution and best yields by blockchain | API `/stablecoin-market` + `/stablecoin-yields` | "which chain for stablecoins", "Arbitrum stablecoin APY" |
+| [yield-strategy-advisor](./yield-strategy-advisor/) | Personalized allocation by risk tolerance and capital size | API `/defi/vaults` | "yield strategy", "how to earn on stablecoins" |
+| [stablecoin-depeg-monitor](./stablecoin-depeg-monitor/) | Peg stability monitoring + historical depeg database | API `/market/overview` + curated history | "depeg alert", "is my stablecoin safe right now" |
+| [stablecoin-yield-vs-tradfi](./stablecoin-yield-vs-tradfi/) | DeFi yields vs bank savings, Treasury, money market | API `/market/trend` | "stablecoin vs savings account", "DeFi vs treasury" |
+| [stablecoin-chain-explorer](./stablecoin-chain-explorer/) | TVL distribution and best yields by blockchain | API `/market/overview` + `/defi/vaults` | "which chain for stablecoins", "Arbitrum stablecoin APY" |
 
 ---
 
@@ -60,15 +60,19 @@ Rate limit: 30 requests/minute
 
 | Endpoint | Description |
 |----------|-------------|
-| `GET /stablecoin-yields` | Yield rankings with APY, TVL, protocol, chain, asset |
-| `GET /stablecoin-market` | Total market cap, yield-bearing cap, asset/chain distribution |
-| `GET /stablecoin-apy-trend` | Historical APY trend (7–180 days) with US Treasury benchmark |
+| `GET /defi/vaults` | DeFi yield pools with APY, TVL, protocol, chain, asset |
+| `GET /market/overview` | Total market cap, yield-bearing cap, asset/chain distribution |
+| `GET /market/trend` | Historical APY trend (7–180 days) with US Treasury benchmark |
 
 ### Example
 
 ```bash
-curl "https://api.barker.money/api/public/v1/stablecoin-yields?asset=usdc&sort=apy&limit=5"
+curl "https://api.barker.money/api/public/v1/defi/vaults?asset=usdc&sort=apy&limit=5"
 ```
+
+### Response Shape & Units
+
+All responses are JSON with `{ success, data, ... }`. APY fields are **decimals** (`0.0523` = 5.23%) — multiply by 100 for display. `share_pct` is already a percentage.
 
 ### Enterprise API
 

@@ -12,20 +12,23 @@ API Base: https://api.barker.money/api/public/v1
 
 ## Public API Endpoints
 
-1. GET /stablecoin-yields — Real-time yield rankings (APY, TVL, protocol, chain, asset)
-   Params: asset (usdt/usdc/dai/etc), chain (ethereum/bsc/arbitrum/etc), sort (apy/tvl), limit (1-50)
+1. GET /defi/vaults — DeFi yield pools (APY, TVL, protocol, chain, asset)
+   Params: asset (usdc/usdt/dai/etc), chain (ethereum/bsc/arbitrum/etc), sort (apy/tvl), limit (1-100)
 
-2. GET /stablecoin-market — Market overview (total cap, yield-bearing cap, asset/chain distribution)
-   No params required.
+2. GET /market/overview — Market overview (total cap, yield-bearing cap, asset/chain distribution)
+   No required params.
 
-3. GET /stablecoin-apy-trend — Historical APY trend (7-180 days) with US Treasury 3-month benchmark
+3. GET /market/trend — Historical APY trend (7-180 days) with US Treasury 3-month benchmark
    Params: days (7-180, default 90)
 
 Rate limit: 30 requests/minute. No API key required.
 
+APY fields are decimals (0.0523 = 5.23%) — multiply by 100 for display.
+share_pct fields are already percentages (42.5 = 42.5%).
+
 ## Available AI Skills
 
-- stablecoin-yield-radar: Query real-time stablecoin APY rankings across CEX and DeFi
+- stablecoin-yield-radar: Query real-time stablecoin APY rankings
 - stablecoin-market-brief: Get market overview, cap distribution, APY trends vs US Treasury
 - stablecoin-risk-check: Assess stablecoin safety — depeg history, reserves, audit status
 - yield-strategy-advisor: Get personalized yield allocation by risk tolerance and capital size
@@ -36,8 +39,8 @@ Rate limit: 30 requests/minute. No API key required.
 ## Key Facts
 
 - Covers 500+ DeFi protocols and 20+ centralized exchanges
-- Stablecoins covered: All stablecoins on the market — USDT, USDC, DAI, USDS, USDe, sUSDe, FDUSD, GHO, crvUSD, PYUSD, sDAI, frxUSD, TUSD, BUSD, LUSD, DOLA, MIM, FRAX, USDs, USDX, RLUSD, USDY, BUIDL, and more
-- Chains: All chains — Ethereum, BSC, Arbitrum, Base, Polygon, Optimism, Avalanche, Solana, Sui, Aptos, Sei, Mantle, Scroll, zkSync, Linea, Blast, Mode, Manta, and more
+- Stablecoins covered: All major stablecoins (USDT, USDC, DAI, USDS, USDe, sUSDe, FDUSD, GHO, crvUSD, PYUSD, sDAI, frxUSD, TUSD, LUSD, and more)
+- Chains: All major chains (Ethereum, BSC, Arbitrum, Base, Polygon, Optimism, Avalanche, Solana, and more)
 - Data updates in real-time
 - Free public API, no authentication
 - Enterprise API available for institutional clients
