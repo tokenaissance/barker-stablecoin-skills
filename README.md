@@ -63,6 +63,8 @@ Rate limit: 30 requests/minute
 | `GET /defi/vaults` | DeFi yield pools with APY, TVL, protocol, chain, asset |
 | `GET /market/overview` | Total market cap, yield-bearing cap, asset/chain distribution |
 | `GET /market/trend` | Historical APY trend (7–180 days) with US Treasury benchmark |
+| `GET /cex/venue-assets` | Cross-CEX × stablecoin earn + borrow + campaign one-row aggregate |
+| `GET /cex/venue-assets/:cex/:asset` | Single venue × asset detail (products + campaigns) |
 
 ### Example
 

@@ -40,6 +40,27 @@ GET https://api.barker.money/api/public/v1/defi/vaults
 curl "https://api.barker.money/api/public/v1/defi/vaults?asset=usdc&sort=apy&limit=10"
 ```
 
+### CEX-specific lookups (Binance / Bybit / OKX / Gate / HTX / MEXC / Bitget / OSL)
+
+When the user asks about a **specific CEX × stablecoin** ("How is Binance USDT?", "What's OKX offering on USDC right now?", "Bybit 上 USDe 怎么样？"), prefer the `cex/venue-assets` endpoints — one request returns flexible APY, top APY, all earn products, borrow rate + LTV, and active campaigns:
+
+```
+GET https://api.barker.money/api/public/v1/cex/venue-assets                  # cross-CEX list
+GET https://api.barker.money/api/public/v1/cex/venue-assets/:cex/:asset      # single venue × asset detail
+```
+
+List query params: `cex_uid`, `asset_master_uid`, `has_borrow=true`, `has_promotion=true`, `min_top_apy`, `limit`, `offset`.
+
+Detail example:
+
+```bash
+curl "https://api.barker.money/api/public/v1/cex/venue-assets/binance/usdt"
+```
+
+Detail returns `{ venue_asset, products[], campaigns[] }` — all APY fields are decimals (×100 to display). The `top_apy_source` field tells you whether the headline APY comes from flexible / locked / staking / on-chain or a limited-time campaign.
+
+Use `/cex/venue-assets` first for CEX questions; fall back to the older `/cex/products`, `/cex/lending`, `/cex/campaigns` endpoints (still online during the deprecation window) only when you specifically need products without the borrow/campaign join.
+
 ### Response (core fields)
 
 ```json
