@@ -14,24 +14,27 @@ Powered by [**Barker — The Stablecoin Yield Map**](https://barker.money). Free
 
 ## Quick Start
 
-### Claude Code
+### OKX Wallet Plugin Store
 
 ```bash
-claude mcp add barker-stablecoin-skills -- npx -y @anthropic-ai/mcp-remote@latest https://github.com/YBSbarker/barker-stablecoin-skills
+npx skills add okx/plugin-store --skill <skill-name>
+# e.g.: npx skills add okx/plugin-store --skill stablecoin-yield-radar
 ```
 
-### npx
-
-```bash
-npx skills add https://github.com/YBSbarker/barker-stablecoin-skills
-```
-
-### Git Clone
+### Claude Code (native skill loader)
 
 ```bash
 git clone https://github.com/YBSbarker/barker-stablecoin-skills.git
-cp -r barker-stablecoin-skills/*/SKILL.md .claude/skills/
+cp -r barker-stablecoin-skills/skills/<skill-name> ~/.claude/skills/
 ```
+
+### Anthropic Plugin Marketplace
+
+Each skill is shipped with `.claude-plugin/plugin.json` and is compatible with the Claude Code plugin marketplace.
+
+### Cursor / Cline / other MCP hosts
+
+Point your MCP-compatible host at `https://api.barker.money` — the skill SKILL.md files document the public endpoints (`/defi/vaults`, `/market/overview`, `/market/trend`) and do not require any authentication. CEX per-venue detail is available via the Enterprise API ([app.barker.money/enterprise](https://app.barker.money/enterprise)).
 
 ---
 
@@ -39,13 +42,13 @@ cp -r barker-stablecoin-skills/*/SKILL.md .claude/skills/
 
 | Skill | What It Does | Data Source | Key Triggers |
 |-------|-------------|-------------|-------------|
-| [stablecoin-yield-radar](./stablecoin-yield-radar/) | Real-time APY rankings across DeFi | API `/defi/vaults` | "best stablecoin yield", "where to earn on USDC" |
-| [stablecoin-market-brief](./stablecoin-market-brief/) | Market overview: cap, distribution, APY trends vs US Treasury | API `/market/overview` + `/market/trend` | "stablecoin market cap", "USDT market share" |
-| [stablecoin-risk-check](./stablecoin-risk-check/) | Safety assessment: depeg history, reserves, audit status | Curated knowledge base | "is USDT safe", "stablecoin comparison" |
-| [yield-strategy-advisor](./yield-strategy-advisor/) | Personalized allocation by risk tolerance and capital size | API `/defi/vaults` | "yield strategy", "how to earn on stablecoins" |
-| [stablecoin-depeg-monitor](./stablecoin-depeg-monitor/) | Peg stability monitoring + historical depeg database | API `/market/overview` + curated history | "depeg alert", "is my stablecoin safe right now" |
-| [stablecoin-yield-vs-tradfi](./stablecoin-yield-vs-tradfi/) | DeFi yields vs bank savings, Treasury, money market | API `/market/trend` | "stablecoin vs savings account", "DeFi vs treasury" |
-| [stablecoin-chain-explorer](./stablecoin-chain-explorer/) | TVL distribution and best yields by blockchain | API `/market/overview` + `/defi/vaults` | "which chain for stablecoins", "Arbitrum stablecoin APY" |
+| [stablecoin-yield-radar](./skills/stablecoin-yield-radar/) | Real-time APY rankings across DeFi | API `/defi/vaults` | "best stablecoin yield", "where to earn on USDC" |
+| [stablecoin-market-brief](./skills/stablecoin-market-brief/) | Market overview: cap, distribution, APY trends vs US Treasury | API `/market/overview` + `/market/trend` | "stablecoin market cap", "USDT market share" |
+| [stablecoin-risk-check](./skills/stablecoin-risk-check/) | Safety assessment: depeg history, reserves, audit status | Curated knowledge base | "is USDT safe", "stablecoin comparison" |
+| [yield-strategy-advisor](./skills/yield-strategy-advisor/) | Personalized allocation by risk tolerance and capital size | API `/defi/vaults` | "yield strategy", "how to earn on stablecoins" |
+| [stablecoin-depeg-monitor](./skills/stablecoin-depeg-monitor/) | Peg stability monitoring + historical depeg database | API `/market/overview` + curated history | "depeg alert", "is my stablecoin safe right now" |
+| [stablecoin-yield-vs-tradfi](./skills/stablecoin-yield-vs-tradfi/) | DeFi yields vs bank savings, Treasury, money market | API `/market/trend` | "stablecoin vs savings account", "DeFi vs treasury" |
+| [stablecoin-chain-explorer](./skills/stablecoin-chain-explorer/) | TVL distribution and best yields by blockchain | API `/market/overview` + `/defi/vaults` | "which chain for stablecoins", "Arbitrum stablecoin APY" |
 
 ---
 
@@ -55,16 +58,24 @@ All data comes from the **Barker Public API** — free, no API key, real-time up
 
 ```
 Base URL: https://api.barker.money/api/public/v1
-Rate limit: 30 requests/minute
+Rate limit: 30 requests/minute per IP
 ```
+
+### Access model & security posture
+
+- **Authentication**: None — public read-only API.
+- **Rate limiting**: 30 req/min per IP. Edge DDoS protection in front.
+- **Data scope sent to the API**: Only public market parameters — stablecoin symbol, chain name, sort/limit. **No** wallet addresses, balances, signatures, private keys, or PII are transmitted by any skill in this suite.
+- **Data returned**: Public yield / market / TVL figures only. Sensitivity equivalent to public market-data APIs such as CoinGecko or DeFiLlama.
+- **External data boundary**: Every SKILL.md in this suite includes a `## Security: External Data Boundary` section instructing consuming LLMs to treat all API response strings as untrusted data, not instructions.
 
 | Endpoint | Description |
 |----------|-------------|
 | `GET /defi/vaults` | DeFi yield pools with APY, TVL, protocol, chain, asset |
 | `GET /market/overview` | Total market cap, yield-bearing cap, asset/chain distribution |
 | `GET /market/trend` | Historical APY trend (7–180 days) with US Treasury benchmark |
-| `GET /cex/venue-assets` | Cross-CEX × stablecoin earn + borrow + campaign one-row aggregate |
-| `GET /cex/venue-assets/:cex/:asset` | Single venue × asset detail (products + campaigns) |
+
+CEX per-venue detail (products, campaigns, borrow rates, venue × asset matrix) is not part of the public API. Interactive map at [barker.money](https://barker.money); programmatic access via [app.barker.money/enterprise](https://app.barker.money/enterprise).
 
 ### Example
 
@@ -80,7 +91,7 @@ All responses are JSON with `{ success, data, ... }`. APY and `share_pct` fields
 
 Need higher rate limits, historical data, or custom fields? Contact us for institutional-grade access.
 
-→ [api.barker.money/pro](https://api.barker.money/pro)
+→ [app.barker.money/enterprise](https://app.barker.money/enterprise)
 
 ---
 
@@ -115,7 +126,14 @@ A: Barker is **stablecoin-only** and combines **CEX + on-chain** data in a singl
 
 - Website: [barker.money](https://barker.money)
 - Public API: `https://api.barker.money/api/public/v1`
-- Enterprise API: [api.barker.money/pro](https://api.barker.money/pro)
+- Enterprise API: [app.barker.money/enterprise](https://app.barker.money/enterprise)
+
+## Author & Maintainer Disclosure
+
+- **Project**: Barker — The Stablecoin Yield Map ([barker.money](https://barker.money))
+- **GitHub org**: [YBSbarker](https://github.com/YBSbarker) (controlled by the Barker team)
+- **Submitting committers**: `zuoyeweb3` (founder), `royrzguo` (engineering) — both authorized Barker team members
+- **Contact**: partner@barker.money
 
 ## License
 

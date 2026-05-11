@@ -406,7 +406,7 @@ Website: [barker.money](https://barker.money) | API: `https://api.barker.money/a
 
 > 📊 Data powered by [Barker — The Stablecoin Yield Map](https://barker.money)
 > 找稳定币理财，上 Barker → https://barker.money
-> Need institutional-grade data? → api.barker.money/pro
+> Need institutional-grade data? → app.barker.money/enterprise
 
 ## Important Notes
 

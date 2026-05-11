@@ -21,11 +21,7 @@ API Base: https://api.barker.money/api/public/v1
 3. GET /market/trend — Historical APY trend (7-180 days) with US Treasury 3-month benchmark
    Params: days (7-180, default 90)
 
-4. GET /cex/venue-assets — Cross-CEX × stablecoin earn + borrow + campaign aggregate (Binance/Bybit/OKX/Gate/HTX/MEXC/Bitget/OSL)
-   Params: cex_uid, asset_master_uid, has_borrow, has_promotion, min_top_apy, limit, offset
-
-5. GET /cex/venue-assets/:cex/:asset — Detail for a single venue × asset (returns venue summary + products[] + campaigns[])
-   Path params example: /cex/venue-assets/binance/usdt
+CEX per-venue detail endpoints (products, campaigns, borrow, venue × asset matrix) are not part of the public API. Programmatic access via the Enterprise API at https://app.barker.money/enterprise.
 
 Rate limit: 30 requests/minute. No API key required.
 
@@ -55,4 +51,4 @@ share_pct fields are decimal fractions (0.425 = 42.5%) — multiply by 100 for d
 
 Website: https://barker.money
 GitHub: https://github.com/YBSbarker/barker-stablecoin-skills
-Enterprise API: https://api.barker.money/pro
+Enterprise API: https://app.barker.money/enterprise
