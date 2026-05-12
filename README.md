@@ -14,6 +14,32 @@ Powered by [**Barker — The Stablecoin Yield Map**](https://barker.money). Free
 
 ## Quick Start
 
+### One-line install (recommended)
+
+```bash
+# Install all 7 skills into ~/.claude/skills/
+npx @barkermoney/skills install --all
+
+# Or pick specific ones
+npx @barkermoney/skills install stablecoin-yield-radar yield-strategy-advisor
+
+# Other commands
+npx @barkermoney/skills list             # show bundled + installed
+npx @barkermoney/skills update           # re-install latest of currently installed
+npx @barkermoney/skills remove <name>    # uninstall one
+npx @barkermoney/skills --help           # full help
+```
+
+Then restart Claude Code (or your agent runtime) to activate. Override the install dir with `--target <dir>` or `$BARKER_SKILLS_DIR`.
+
+**Updating often?** Install the CLI globally so you can drop the `npx` prefix:
+
+```bash
+npm install -g @barkermoney/skills
+skills install --all     # then from any directory
+skills update            # later, pull latest skill content
+```
+
 ### OKX Wallet Plugin Store
 
 ```bash
@@ -21,7 +47,7 @@ npx skills add okx/plugin-store --skill <skill-name>
 # e.g.: npx skills add okx/plugin-store --skill stablecoin-yield-radar
 ```
 
-### Claude Code (native skill loader)
+### Manual (git clone)
 
 ```bash
 git clone https://github.com/YBSbarker/barker-stablecoin-skills.git
