@@ -1,0 +1,51 @@
+{
+  "name": "@barkermoney/skills",
+  "version": "0.2.0",
+  "description": "The official Barker stablecoin yield skill suite — real-time data from 500+ DeFi protocols and 20+ CEX. Skill installer for Claude Code / OKX Plugin Store + a stdio MCP server wrapping the Barker public API.",
+  "keywords": [
+    "stablecoin",
+    "yield",
+    "defi",
+    "apy",
+    "claude-code",
+    "claude-skill",
+    "mcp",
+    "mcp-server",
+    "agent",
+    "barker"
+  ],
+  "homepage": "https://barker.money",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YBSbarker/barker-stablecoin-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YBSbarker/barker-stablecoin-skills/issues"
+  },
+  "license": "MIT",
+  "author": "Barker (https://barker.money)",
+  "bin": {
+    "skills": "./bin/cli.js",
+    "barker-skills": "./bin/cli.js",
+    "barker-mcp": "./bin/mcp-server.mjs"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "./build.sh",
+    "prepublishOnly": "./build.sh"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

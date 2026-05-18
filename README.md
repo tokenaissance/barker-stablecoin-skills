@@ -40,6 +40,30 @@ skills install --all     # then from any directory
 skills update            # later, pull latest skill content
 ```
 
+### MCP server (stdio)
+
+Need direct API access from a Claude Code / Cursor / Cline session — without going through the bundled skills? Run `barker-mcp`, a stdio MCP server that wraps the Barker public API (`/defi/vaults`, `/market/overview`, `/market/trend`) as three callable tools. Zero auth, same 30 req/min rate limit as the public API.
+
+```bash
+# Register with Claude Code (user scope, persists across sessions)
+claude mcp add -s user barker -- npx -y -p @barkermoney/skills barker-mcp
+```
+
+Then restart Claude Code. Three tools become available:
+
+| Tool | Wraps | Use for |
+|------|-------|---------|
+| `barker_defi_vaults` | `/defi/vaults` | "best USDC yield", "Aave vs Morpho", filter by asset/chain/sort/limit |
+| `barker_market_overview` | `/market/overview` | total cap, yield-bearing cap, asset/chain distribution |
+| `barker_market_trend` | `/market/trend` | 7–180 day APY trend vs US Treasury benchmark |
+
+Smoke test outside of an agent host:
+
+```bash
+npx -p @barkermoney/skills barker-mcp
+# speaks MCP over stdio; pipe JSON-RPC frames to interact
+```
+
 ### OKX Wallet Plugin Store
 
 ```bash
