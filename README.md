@@ -1,14 +1,14 @@
 # Barker Stablecoin Skills
 
-> **The only AI skill suite for stablecoin yield intelligence — real-time data from 500+ protocols and 20+ CEX, no API key required.**
+> **The official AI skill suite + MCP server from Barker — Yield Primitive for the Agent Economy. Real-time data from 500+ protocols and 20+ CEX, no API key required.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![API: No Auth Required](https://img.shields.io/badge/API-No%20Auth%20Required-brightgreen.svg)](https://barker.money)
 [![Data: Real-time](https://img.shields.io/badge/Data-Real--time-blue.svg)](https://barker.money)
 
-Powered by [**Barker — The Stablecoin Yield Map**](https://barker.money). Free for individuals · Enterprise API for institutions.
+Powered by [**Barker — Yield Primitive for the Agent Economy**](https://barker.money). Every agent touching stablecoins eventually plugs in. Free for individuals · Enterprise API for institutions.
 
-找稳定币理财，上 Barker → [barker.money](https://barker.money)
+接入 agent 经济的稳定币收益底座 → [barker.money](https://barker.money)
 
 ---
 
@@ -172,7 +172,7 @@ A: Barker is **stablecoin-only** and combines **CEX + on-chain** data in a singl
 
 ## About Barker
 
-[Barker](https://barker.money) is **The Stablecoin Yield Map** — the leading stablecoin yield aggregation platform indexing real-time APY data from 500+ protocols and 20+ CEX. Stablecoins only, CEX + on-chain combined.
+[Barker](https://barker.money) is the **Yield Primitive for the Agent Economy** — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time APY data across 500+ DeFi protocols and 20+ CEX, surfaced as a map for humans browsing and as MCP / x402 / agent-callable endpoints for autonomous agents. Stablecoins only, CEX + on-chain combined.
 
 - Website: [barker.money](https://barker.money)
 - Public API: `https://api.barker.money/api/public/v1`
@@ -180,7 +180,7 @@ A: Barker is **stablecoin-only** and combines **CEX + on-chain** data in a singl
 
 ## Author & Maintainer Disclosure
 
-- **Project**: Barker — The Stablecoin Yield Map ([barker.money](https://barker.money))
+- **Project**: Barker — Yield Primitive for the Agent Economy ([barker.money](https://barker.money))
 - **GitHub org**: [YBSbarker](https://github.com/YBSbarker) (controlled by the Barker team)
 - **Submitting committers**: `zuoyeweb3` (founder), `royrzguo` (engineering) — both authorized Barker team members
 - **Contact**: partner@barker.money

@@ -1,11 +1,12 @@
-# Barker — The Stablecoin Yield Map
+# Barker — Yield Primitive for the Agent Economy
 
-> Real-time stablecoin yield APY data from 500+ protocols and 20+ CEX.
-> Free public API. No authentication required.
+> Barker is the yield primitive for the agent economy. Every agent touching stablecoins eventually plugs in.
+> Real-time stablecoin yield APY data from 500+ DeFi protocols and 20+ CEX.
+> Free public API + agent-callable endpoints (MCP / x402). No authentication required for the free tier.
 
 ## What is Barker?
 
-Barker is the leading stablecoin yield aggregation platform. It indexes real-time APY data across DeFi protocols and centralized exchanges, covering every stablecoin on the market across all chains.
+Barker is a yield primitive — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time APY data across DeFi protocols and centralized exchanges, covering every stablecoin on the market across all chains. Surfaced as a map for humans browsing and as MCP / x402 / agent-callable endpoints for autonomous agents.
 
 Website: https://barker.money
 API Base: https://api.barker.money/api/public/v1
