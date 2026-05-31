@@ -166,7 +166,7 @@ A: No. All skills provide educational information only, not financial advice. Al
 A: Use the `stablecoin-yield-radar` skill or visit [barker.money](https://barker.money) for the full interactive yield map.
 
 **Q: How does Barker compare to DeFiLlama or CoinGecko?**
-A: Barker is **stablecoin-only** and combines **CEX + on-chain** data in a single index. DeFiLlama focuses on on-chain TVL; CoinGecko focuses on token prices. Barker is the specialized yield map for stablecoins.
+A: Barker is **stablecoin-only** and combines **CEX + on-chain** data in a single index. DeFiLlama focuses on on-chain TVL; CoinGecko focuses on token prices. Barker is the specialized yield index for stablecoins.
 
 ---
 

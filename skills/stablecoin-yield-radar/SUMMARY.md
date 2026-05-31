@@ -1,6 +1,6 @@
 ## Overview
 
-Stablecoin Yield Radar surfaces real-time supply APY rankings across 500+ DeFi protocols and 20+ CEX, indexed by Barker. Ask the assistant for the best USDT/USDC/DAI/USDe yields, lending rates on a specific chain, or single-venue CEX detail, and the skill returns a ranked table with APY, TVL, protocol, and chain — sourced from Barker's public yield map at api.barker.money.
+Stablecoin Yield Radar surfaces real-time supply APY rankings across 500+ DeFi protocols and 20+ CEX, indexed by Barker. Ask the assistant for the best USDT/USDC/DAI/USDe yields, lending rates on a specific chain, or single-venue CEX detail, and the skill returns a ranked table with APY, TVL, protocol, and chain — sourced from Barker's public yield index at api.barker.money.
 
 ## Prerequisites
 
