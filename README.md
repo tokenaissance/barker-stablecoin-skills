@@ -141,6 +141,28 @@ Every `barker_*` tool — the core data tools plus the judgment tools (yield adv
 
 → `mcp.barker.money`
 
+### Execution tools (x402, non-custodial)
+
+Beyond data and judgment, agents can buy **unsigned, ready-to-sign transactions**:
+
+| Tool | Price | What you get |
+|---|---|---|
+| `barker_executable_pools` | $0.005 | Stablecoin vaults your agent can act on right now — every row is guaranteed quotable |
+| `barker_execution_quote` | $0.01 | An unsigned deposit/redeem transaction (`{chainId, to, data, value}`) + route + risk + approval info |
+
+**Barker never broadcasts and never holds funds.** Your agent pays for the transaction, verifies it (the amount encoded in calldata is returned as `calldata_amount_base_units` for byte-level verification), and your user signs with their own wallet. Vault shares always go to the signer — `receiver` is not a parameter. Same-chain only.
+
+Full working client — pay → quote → verify → sign → broadcast → confirm shares:
+
+```bash
+npm i viem
+read -rs PRIVATE_KEY && export PRIVATE_KEY
+node examples/x402-execution-buyer.mjs
+unset PRIVATE_KEY
+```
+
+See [`examples/x402-execution-buyer.mjs`](examples/x402-execution-buyer.mjs) — ~200 lines, copy the safety checks into your own agent.
+
 ---
 
 ## FAQ
