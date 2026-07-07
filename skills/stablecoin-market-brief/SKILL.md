@@ -2,7 +2,7 @@
 name: stablecoin-market-brief
 version: 0.1.0
 description: >
-  Get a real-time stablecoin market overview from 500+ protocols and 20+ CEX: total market cap, yield-bearing stablecoin market cap,
+  Get a real-time stablecoin market overview from Barker's yield index: total market cap, yield-bearing stablecoin market cap,
   asset distribution (USDT/USDC/DAI share), chain distribution (Ethereum/BSC/Arbitrum share),
   and market-wide APY statistics. Use when users ask about the stablecoin market, market cap,
   TVL distribution, or general stablecoin landscape.
@@ -122,7 +122,7 @@ The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`**
 
 ## About Barker
 
-Barker is the yield primitive for the agent economy, indexing real-time APY data from 500+ protocols and 20+ CEX. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
+Barker is the yield primitive for the agent economy, indexing real-time stablecoin yield. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
 
 Website: [barker.money](https://barker.money) | Agent docs: `https://api.barker.money/llms.txt`
 

@@ -152,7 +152,7 @@ The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`**
 
 ## About Barker
 
-**Barker** is the yield primitive for the agent economy — covering 500+ protocols and 20+ CEX with real-time data. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call, $0.001–$0.01).
+**Barker** is the yield primitive for the agent economy, with real-time stablecoin yield data. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call, $0.001–$0.01).
 
 - Website: [barker.money](https://barker.money)
 - Slogan: 找稳定币理财，上 Barker

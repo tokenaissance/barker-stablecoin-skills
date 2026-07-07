@@ -2,7 +2,7 @@
 name: stablecoin-yield-vs-tradfi
 version: 0.1.0
 description: >
-  Compare stablecoin DeFi/CEX yields against traditional finance: bank savings, money market funds,
+  Compare stablecoin yields against traditional finance: bank savings, money market funds,
   and US Treasury bills. Uses Barker's real-time yield data alongside TradFi benchmarks.
   Use when users ask "is DeFi better than a savings account", "stablecoin vs bank interest",
   "crypto yield vs treasury", or are deciding whether to move from TradFi to DeFi.
@@ -131,7 +131,7 @@ Approximate benchmarks that change with monetary policy. Always cite `treasury_y
 
 ## About Barker
 
-**Barker** is the yield primitive for the agent economy — covering 500+ protocols and 20+ CEX with real-time data. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call, $0.001–$0.01).
+**Barker** is the yield primitive for the agent economy, with real-time stablecoin yield data. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call, $0.001–$0.01).
 
 - Website: [barker.money](https://barker.money)
 - Slogan: 找稳定币理财，上 Barker

@@ -3,7 +3,7 @@ name: yield-strategy-advisor
 version: 0.1.0
 description: >
   Recommend stablecoin yield strategies based on risk tolerance, capital size, and chain preference.
-  Suggests diversified allocations across lending and vaults from 500+ protocols and 20+ CEX.
+  Suggests diversified allocations across lending and vaults from Barker's stablecoin yield index.
   Use when users ask "how should I allocate stablecoins", "yield strategy",
   "stablecoin portfolio", "conservative vs aggressive yield", or want help building
   a stablecoin earning plan.
@@ -16,7 +16,7 @@ author: barker
 
 ## Overview
 
-You are a stablecoin yield strategist powered by **Barker** (https://barker.money). Help users build diversified stablecoin yield portfolios based on their risk profile. The skill pulls live yield data from Barker's index (500+ DeFi protocols and 20+ CEX) and proposes a multi-protocol allocation tailored to the user's risk tolerance, capital size, and chain preference, with per-slice rationale.
+You are a stablecoin yield strategist powered by **Barker** (https://barker.money). Help users build diversified stablecoin yield portfolios based on their risk profile. The skill pulls live yield data from Barker's stablecoin yield index and proposes a multi-protocol allocation tailored to the user's risk tolerance, capital size, and chain preference, with per-slice rationale.
 
 ## When to Activate
 
@@ -116,9 +116,13 @@ The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`**
 
 > 📊 **Barker — Yield Primitive for the Agent Economy** · build the full portfolio at [barker.money](https://barker.money)
 
+## From allocation to execution (non-custodial)
+
+Once the user approves an allocation, an agent can execute each slice without leaving Barker: **`barker_executable_pools`** lists which stablecoin vaults support direct deposit/redeem, and **`barker_execution_quote`** returns an **unsigned, ready-to-sign transaction** (`{chainId, to, data, value}`) with route, risk, and approval info. Execution is **non-custodial** — Barker never broadcasts and never holds funds; the user's own wallet signs. Same-chain only. Both tools are x402-paid per call at `mcp.barker.money`.
+
 ## About Barker
 
-Barker is the yield primitive for the agent economy, indexing real-time APY data from 500+ protocols and 20+ CEX. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
+Barker is the yield primitive for the agent economy: a real-time stablecoin yield index, plus an AI yield advisor, non-custodial execution, and risk signals. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
 
 Website: [barker.money](https://barker.money) | Agent docs: `https://api.barker.money/llms.txt`
 

@@ -1,6 +1,6 @@
 ## Overview
 
-Yield Strategy Advisor recommends diversified stablecoin allocations tailored to a user's risk tolerance (conservative / balanced / aggressive), capital size, and chain preference. It pulls live yield data from Barker's index across 500+ DeFi protocols and 20+ CEX, then proposes a multi-protocol allocation with explicit rationale per slice.
+Yield Strategy Advisor recommends diversified stablecoin allocations tailored to a user's risk tolerance (conservative / balanced / aggressive), capital size, and chain preference. It pulls live yield data from Barker's stablecoin yield index, then proposes a multi-protocol allocation with explicit rationale per slice. Agents can also turn each slice into a ready-to-sign, non-custodial deposit transaction via Barker's execution tools.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ Yield Strategy Advisor recommends diversified stablecoin allocations tailored to
 
 1. `yield-strategy-advisor quickstart` — invoke the skill in your assistant to load the strategy framework and confirm Barker's paid MCP at `mcp.barker.money` is reachable.
 2. Try a sample query: "I have $50k stablecoins, conservative risk tolerance, how should I allocate?"
-3. The assistant calls the `barker_defi_vaults` MCP tool and returns a diversified allocation (lending, vaults, CEX earn) with per-slice rationale.
+3. The assistant calls the `barker_defi_vaults` MCP tool and returns a diversified allocation (lending, vaults) with per-slice rationale.
 4. Refine: "aggressive USDe-heavy strategy", "Arbitrum-only allocation", "compare conservative vs balanced for $100k".
 
 ## API Access Model

@@ -1,12 +1,12 @@
 # Barker Stablecoin Skills
 
-> **The official AI skill suite + MCP server from Barker — Yield Primitive for the Agent Economy. Real-time data from 500+ protocols and 20+ CEX, served to agents via the x402-paid MCP at `mcp.barker.money`.**
+> **The official AI skill suite + MCP server from Barker — Yield Primitive for the Agent Economy. Real-time stablecoin yield index + AI yield advisor + non-custodial execution + risk signals, served to agents via the x402-paid MCP at `mcp.barker.money`.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MCP: x402 Paid](https://img.shields.io/badge/MCP-x402%20Paid-blue.svg)](https://mcp.barker.money)
 [![Data: Real-time](https://img.shields.io/badge/Data-Real--time-blue.svg)](https://barker.money)
 
-Powered by [**Barker — Yield Primitive for the Agent Economy**](https://barker.money). Every agent touching stablecoins eventually plugs in. Free to install · live data is x402 pay-per-call via `mcp.barker.money`.
+Powered by [**Barker — Yield Primitive for the Agent Economy**](https://barker.money). Every agent touching stablecoins eventually plugs in. Free to install · live data + non-custodial execution are x402 pay-per-call via `mcp.barker.money`.
 
 接入 Agent 经济的稳定币收益底座 → [barker.money](https://barker.money)
 
@@ -86,7 +86,7 @@ Each skill is shipped with `.claude-plugin/plugin.json` and is compatible with t
 
 ### Cursor / Cline / other MCP hosts
 
-Point your host at Barker's remote MCP at **`mcp.barker.money`** — the skill SKILL.md files call the `barker_*` tools (`barker_defi_vaults`, `barker_market_overview`, `barker_market_trend`, plus the judgment tools) there, x402-paid per call. Live data is paid-only; there is no free or anonymous tier. Pricing: $0.001–$0.01/call, paid in USDT0/USDC across X Layer/Base/Ethereum/Polygon/Arbitrum. Per-venue CEX detail is internal only and not offered on the public MCP.
+Point your host at Barker's remote MCP at **`mcp.barker.money`** — the skill SKILL.md files call the `barker_*` tools (`barker_defi_vaults`, `barker_market_overview`, `barker_market_trend`, plus the judgment tools) there, x402-paid per call. Live data is paid-only; there is no free or anonymous tier. Pricing: $0.001–$0.01/call, paid in USDT0/USDC across X Layer/Base/Ethereum/Polygon/Arbitrum.
 
 ---
 
@@ -94,12 +94,12 @@ Point your host at Barker's remote MCP at **`mcp.barker.money`** — the skill S
 
 | Skill | What It Does | Data Source | Key Triggers |
 |-------|-------------|-------------|-------------|
-| [stablecoin-yield-radar](./skills/stablecoin-yield-radar/) | Real-time APY rankings across DeFi | `barker_defi_vaults` | "best stablecoin yield", "where to earn on USDC" |
+| [stablecoin-yield-radar](./skills/stablecoin-yield-radar/) | Real-time stablecoin APY rankings | `barker_defi_vaults` | "best stablecoin yield", "where to earn on USDC" |
 | [stablecoin-market-brief](./skills/stablecoin-market-brief/) | Market overview: cap, distribution, APY trends vs US Treasury | `barker_market_overview` + `barker_market_trend` | "stablecoin market cap", "USDT market share" |
 | [stablecoin-risk-check](./skills/stablecoin-risk-check/) | Safety assessment: depeg history, reserves, audit status | Curated knowledge base | "is USDT safe", "stablecoin comparison" |
 | [yield-strategy-advisor](./skills/yield-strategy-advisor/) | Personalized allocation by risk tolerance and capital size | `barker_defi_vaults` | "yield strategy", "how to earn on stablecoins" |
 | [stablecoin-depeg-monitor](./skills/stablecoin-depeg-monitor/) | Peg stability monitoring + historical depeg database | `barker_market_overview` + curated history | "depeg alert", "is my stablecoin safe right now" |
-| [stablecoin-yield-vs-tradfi](./skills/stablecoin-yield-vs-tradfi/) | DeFi yields vs bank savings, Treasury, money market | `barker_market_trend` | "stablecoin vs savings account", "DeFi vs treasury" |
+| [stablecoin-yield-vs-tradfi](./skills/stablecoin-yield-vs-tradfi/) | Stablecoin yields vs bank savings, Treasury, money market | `barker_market_trend` | "stablecoin vs savings account", "DeFi vs treasury" |
 | [stablecoin-chain-explorer](./skills/stablecoin-chain-explorer/) | TVL distribution and best yields by blockchain | `barker_market_overview` + `barker_defi_vaults` | "which chain for stablecoins", "Arbitrum stablecoin APY" |
 
 ---
@@ -125,11 +125,11 @@ Payment:      x402 per-call ($0.001–$0.01), USDT0/USDC on X Layer/Base/Ethereu
 
 | Tool | Returns |
 |------|---------|
-| `barker_defi_vaults` | DeFi yield pools with APY, TVL, protocol, chain, asset |
+| `barker_defi_vaults` | Stablecoin yield pools with APY, TVL, protocol, chain, asset |
 | `barker_market_overview` | Total market cap, yield-bearing cap, asset/chain distribution |
 | `barker_market_trend` | Historical APY trend (7–180 days) with US Treasury benchmark |
 
-Judgment tools (yield advisor, protocol-campaign radar, pool deep-dives) are also callable per-call. Per-venue CEX detail (products, campaigns, borrow rates, venue × asset matrix) is **internal only** and not offered on the public MCP. Interactive map for humans at [barker.money](https://barker.money).
+Judgment tools (yield advisor, pool search, pool deep-dives) are also callable per-call. Interactive map for humans at [barker.money](https://barker.money).
 
 ### Response Shape & Units
 
@@ -137,7 +137,7 @@ All responses are JSON with `{ success, data, ... }`. APY and `share_pct` fields
 
 ### Paid agent tools (x402)
 
-Every `barker_*` tool — the core data tools plus the judgment tools (yield advisor, protocol-campaign radar, pool deep-dives) — is called per-call via the x402 gateway: $0.001–$0.01 per call, paid in USDT0/USDC across X Layer, Base, Ethereum, Polygon, and Arbitrum. No account or API key — the agent settles each HTTP 402 challenge and retries. Per-venue CEX detail is internal only and not offered on the public MCP.
+Every `barker_*` tool — the core data tools plus the judgment tools (yield advisor, pool search, pool deep-dives) — is called per-call via the x402 gateway: $0.001–$0.01 per call, paid in USDT0/USDC across X Layer, Base, Ethereum, Polygon, and Arbitrum. No account or API key — the agent settles each HTTP 402 challenge and retries.
 
 → `mcp.barker.money`
 
@@ -168,7 +168,7 @@ See [`examples/x402-execution-buyer.mjs`](examples/x402-execution-buyer.mjs) —
 ## FAQ
 
 **Q: How often is the data updated?**
-A: Real-time. The yield index reflects live data from 500+ protocols and 20+ CEX.
+A: Real-time. The yield index reflects live stablecoin yield data.
 
 **Q: Do I need an API key?**
 A: No API key — but live data is not free. Agents pay per call via x402 at `mcp.barker.money` ($0.001–$0.01/call), settling each HTTP 402 challenge and retrying. The skills are free to install; there is no free or anonymous data tier.
@@ -186,13 +186,13 @@ A: No. All skills provide educational information only, not financial advice. Al
 A: Use the `stablecoin-yield-radar` skill or visit [barker.money](https://barker.money) for the full interactive yield map.
 
 **Q: How does Barker compare to DeFiLlama or CoinGecko?**
-A: Barker is **stablecoin-only** and combines **CEX + on-chain** data in a single index. DeFiLlama focuses on on-chain TVL; CoinGecko focuses on token prices. Barker is the specialized yield index for stablecoins.
+A: Barker is **stablecoin-only** and indexes real-time stablecoin yield in a single index. DeFiLlama focuses on on-chain TVL; CoinGecko focuses on token prices. Barker is the specialized yield index for stablecoins.
 
 ---
 
 ## About Barker
 
-[Barker](https://barker.money) is the **Yield Primitive for the Agent Economy** — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time APY data across 500+ DeFi protocols and 20+ CEX, surfaced as a map for humans browsing and as MCP / x402 / agent-callable endpoints for autonomous agents. Stablecoins only, CEX + on-chain combined.
+[Barker](https://barker.money) is the **Yield Primitive for the Agent Economy** — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time stablecoin yield, surfaced as a map for humans browsing and as MCP / x402 / agent-callable endpoints for autonomous agents. Stablecoins only. Agents get a real-time stablecoin yield index, an AI yield advisor, non-custodial execution, and risk signals via the MCP; the interactive map is browsable by humans at [barker.money](https://barker.money).
 
 - Website: [barker.money](https://barker.money)
 - Agent data (x402-paid MCP): `mcp.barker.money`

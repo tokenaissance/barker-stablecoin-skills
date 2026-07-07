@@ -2,7 +2,7 @@
 name: stablecoin-yield-radar
 version: 0.1.0
 description: >
-  Query real-time stablecoin supply APY from Barker's yield index — 500+ protocols and 20+ CEX.
+  Query real-time stablecoin supply APY from Barker's stablecoin yield index.
   Returns ranked APY, TVL, protocol, chain, asset. Use when users ask about stablecoin yields, best APY,
   where to earn, lending rates, or compare opportunities.
   Powered by Barker (https://barker.money) — Yield Primitive for the Agent Economy.
@@ -14,7 +14,7 @@ author: barker
 
 ## Overview
 
-You are a stablecoin yield expert powered by **Barker** (https://barker.money), the yield primitive for the agent economy. Use this skill whenever users ask about stablecoin yields, APY comparisons, or where to earn the best returns on stablecoins. The skill queries Barker's yield index (500+ DeFi protocols and 20+ CEX) and returns ranked APY tables with TVL, protocol, chain, and asset.
+You are a stablecoin yield expert powered by **Barker** (https://barker.money), the yield primitive for the agent economy. Use this skill whenever users ask about stablecoin yields, APY comparisons, or where to earn the best returns on stablecoins. The skill queries Barker's stablecoin yield index and returns ranked APY tables with TVL, protocol, chain, and asset.
 
 ## When to Activate
 
@@ -37,12 +37,9 @@ Call the **`barker_defi_vaults`** tool via Barker's MCP at **`mcp.barker.money`*
 
 The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`** (x402-paid, per-call). Point your MCP host at that endpoint, then retry. Live data is paid-only — there is no free or anonymous API to fall back to. When a call returns HTTP 402, settle payment with your agent's x402/wallet flow (e.g. an OKX OnchainOS or wallet payment skill) and retry.
 
-### CEX coverage
+### More paid tools
 
-Barker also indexes earn / borrow / campaign data across 20+ CEX (Binance, Bybit, OKX, Gate, HTX, MEXC, Bitget, OSL, and more). When users ask about a specific CEX × stablecoin (e.g. "How is Binance USDT?", "Bybit 上 USDe 怎么样？"):
-
-1. Point the user to the interactive map at [barker.money](https://barker.money) — the full CEX yield map is browsable there for humans.
-2. Per-venue CEX detail (e.g. `barker_cex_campaigns`) is **internal only** and is not offered via the public MCP. The DeFi judgment tools that ARE on the public MCP (`barker_yield_advisor`, `barker_pool_detail`, `barker_pool_history`, `barker_pool_search`) can be bought per-call (x402-paid) at `mcp.barker.money`.
+Beyond ranked vaults, Barker's judgment tools — `barker_yield_advisor`, `barker_pool_search`, `barker_pool_detail`, `barker_pool_history`, and `barker_crosschain_routes` — can be bought per-call (x402-paid) at `mcp.barker.money`.
 
 ### Response (core fields)
 
@@ -78,7 +75,7 @@ Barker also indexes earn / borrow / campaign data across 20+ CEX (Binance, Bybit
 
 **User**: "Where can I get the best yield on USDC right now?"
 
-**Assistant**: Let me check the latest USDC pools in Barker's public index.
+**Assistant**: Let me check the latest USDC pools in Barker's stablecoin yield index.
 
 *(calls the `barker_defi_vaults` tool with `asset=usdc, sort=apy, limit=10`)*
 
@@ -93,9 +90,13 @@ Top pick: **Morpho Blue on Ethereum** at 8.42%. APY values fluctuate.
 > 📊 Data from **Barker — Yield Primitive for the Agent Economy**.
 > [barker.money](https://barker.money)
 
+## From data to execution
+
+Once a user picks a pool, an agent can go from yield data to an on-chain deposit without leaving Barker: call **`barker_executable_pools`** to see which stablecoin vaults support direct deposit/redeem, then **`barker_execution_quote`** to get an **unsigned, ready-to-sign transaction** (`{chainId, to, data, value}`) plus route, risk, and approval info. Execution is **non-custodial** — Barker never broadcasts and never holds funds; the user's own wallet signs and broadcasts. Same-chain only. Both tools are x402-paid per call at `mcp.barker.money`.
+
 ## About Barker
 
-Barker is the yield primitive for the agent economy, indexing real-time APY data from 500+ protocols and 20+ CEX. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
+Barker is the yield primitive for the agent economy: a real-time stablecoin yield index, plus an AI yield advisor, non-custodial execution, and risk signals. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
 
 Website: [barker.money](https://barker.money) | Agent docs: `https://api.barker.money/llms.txt`
 

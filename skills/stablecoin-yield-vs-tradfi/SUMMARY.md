@@ -1,6 +1,6 @@
 ## Overview
 
-Stablecoin Yield vs TradFi compares live stablecoin DeFi and CEX yields against traditional finance benchmarks — US bank savings rates, money market funds, and US 3-month Treasury bills. The skill helps users decide whether to move capital from a bank or brokerage into stablecoin yield. Sourced from Barker's `barker_market_trend` tool (x402-paid MCP at `mcp.barker.money`) plus embedded TradFi benchmark references.
+Stablecoin Yield vs TradFi compares live stablecoin yields against traditional finance benchmarks — US bank savings rates, money market funds, and US 3-month Treasury bills. The skill helps users decide whether to move capital from a bank or brokerage into stablecoin yield. Sourced from Barker's `barker_market_trend` tool (x402-paid MCP at `mcp.barker.money`) plus embedded TradFi benchmark references.
 
 ## Prerequisites
 

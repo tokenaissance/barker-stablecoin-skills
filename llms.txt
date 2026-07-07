@@ -1,30 +1,42 @@
 # Barker — Yield Primitive for the Agent Economy
 
 > Barker is the yield primitive for the agent economy. Every agent touching stablecoins eventually plugs in.
-> Real-time stablecoin yield APY data from 500+ DeFi protocols and 20+ CEX.
-> Free public API + agent-callable endpoints (MCP / x402). No authentication required for the free tier.
+> Real-time stablecoin yield index + AI yield advisor + non-custodial execution + risk signals.
+> Served to agents as a paid MCP (x402 pay-per-call) at mcp.barker.money. No free or anonymous tier.
 
 ## What is Barker?
 
-Barker is a yield primitive — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time APY data across DeFi protocols and centralized exchanges, covering every stablecoin on the market across all chains. Surfaced as a map for humans browsing and as MCP / x402 / agent-callable endpoints for autonomous agents.
+Barker is a yield primitive — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time stablecoin yield across every stablecoin and every chain, and add an AI yield advisor, non-custodial execution, and risk signals. Live data and execution are served to autonomous agents through a paid MCP at mcp.barker.money; humans browse the interactive map at barker.money.
 
 Website: https://barker.money
-API Base: https://api.barker.money/api/public/v1
+Agent MCP (x402-paid): https://mcp.barker.money
+Agent discovery: https://api.barker.money/llms.txt
 
-## Public API Endpoints
+## Agent access (x402-paid MCP)
 
-1. GET /defi/vaults — DeFi yield pools (APY, TVL, protocol, chain, asset)
-   Params: asset (usdc/usdt/dai/etc), chain (ethereum/bsc/arbitrum/etc), sort (apy/tvl), limit (1-100)
+All live data and execution is served through Barker's MCP at `mcp.barker.money`, priced per call and settled with x402. There is no free, anonymous, or key-based data tier.
 
-2. GET /market/overview — Market overview (total cap, yield-bearing cap, asset/chain distribution)
-   No required params.
+- Payment: x402 per-call ($0.001–$0.01), USDT0 / USDC on X Layer, Base, Ethereum, Polygon, Arbitrum.
+- Auth: on an HTTP 402 challenge, the agent settles payment (e.g. via an OKX OnchainOS or wallet payment skill) and retries — no account or API key.
+- Discovery: this file, plus the tool catalog advertised on the HTTP 402 challenge.
 
-3. GET /market/trend — Historical APY trend (7-180 days) with US Treasury 3-month benchmark
-   Params: days (7-180, default 90)
+## MCP Tools
 
-CEX per-venue detail endpoints (products, campaigns, borrow, venue × asset matrix) are not part of the public API. Programmatic access via the Enterprise API at https://app.barker.money/enterprise.
+Data & judgment:
+1. barker_defi_vaults — ranked stablecoin yield pools (APY, TVL, protocol, chain, asset)
+2. barker_market_overview — market overview (total cap, yield-bearing cap, asset/chain distribution)
+3. barker_market_trend — historical APY trend (7–180 days) vs US Treasury 3-month benchmark
+4. barker_yield_advisor — ranked picks with data-derived reasons and risk flags
+5. barker_pool_search — search the yield index by asset, chain, protocol, or keyword
+6. barker_pool_detail — full detail for a single pool
+7. barker_pool_history — historical APY / TVL series for a pool
+8. barker_crosschain_routes — cross-chain routing options between pools
 
-Rate limit: 30 requests/minute. No API key required.
+Execution (non-custodial):
+9. barker_executable_pools — stablecoin vaults an agent can act on right now; every row is guaranteed quotable
+10. barker_execution_quote — an unsigned, ready-to-sign deposit/redeem transaction ({chainId, to, data, value}) + route + risk + approval info
+
+Non-custodial execution: Barker builds the unsigned transaction; the agent's own wallet signs and broadcasts. Barker never broadcasts and never holds funds. Vault shares always go to the signer. Same-chain only.
 
 APY fields are decimals (0.0523 = 5.23%) — multiply by 100 for display.
 share_pct fields are decimal fractions (0.425 = 42.5%) — multiply by 100 for display.
@@ -36,20 +48,20 @@ share_pct fields are decimal fractions (0.425 = 42.5%) — multiply by 100 for d
 - stablecoin-risk-check: Assess stablecoin safety — depeg history, reserves, audit status
 - yield-strategy-advisor: Get personalized yield allocation by risk tolerance and capital size
 - stablecoin-depeg-monitor: Monitor peg stability, review historical depeg events
-- stablecoin-yield-vs-tradfi: Compare DeFi yields vs bank savings, Treasury bills, money market funds
+- stablecoin-yield-vs-tradfi: Compare stablecoin yields vs bank savings, Treasury bills, money market funds
 - stablecoin-chain-explorer: Explore stablecoin TVL and yields by blockchain
 
 ## Key Facts
 
-- Covers 500+ DeFi protocols and 20+ centralized exchanges
+- Category: real-time stablecoin yield index + AI yield advisor + non-custodial execution + risk signals
 - Stablecoins covered: All major stablecoins (USDT, USDC, DAI, USDS, USDe, sUSDe, FDUSD, GHO, crvUSD, PYUSD, sDAI, frxUSD, TUSD, LUSD, and more)
 - Chains: All major chains (Ethereum, BSC, Arbitrum, Base, Polygon, Optimism, Avalanche, Solana, and more)
 - Data updates in real-time
-- Free public API, no authentication
-- Enterprise API available for institutional clients
+- Live data + execution are x402 pay-per-call via mcp.barker.money — no free or anonymous tier
+- Non-custodial: Barker never holds funds or broadcasts; the agent's own wallet signs
 
 ## Contact
 
 Website: https://barker.money
+Agent MCP (x402-paid): https://mcp.barker.money
 GitHub: https://github.com/YBSbarker/barker-stablecoin-skills
-Enterprise API: https://app.barker.money/enterprise
