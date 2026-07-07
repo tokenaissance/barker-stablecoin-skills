@@ -1,5 +1,5 @@
 // Barker execution buyer — reference client for the paid execution tools on
-// https://mcp.barker.money (x402 / HTTP 402 pay-per-call, no API key, no account).
+// https://mcp.barker.money — settles via x402 (HTTP 402 challenge).
 //
 // What it does, end to end:
 //   1. Pays $0.005 → barker_executable_pools   (discover pools your agent can act on)
@@ -67,7 +67,7 @@ const ERC20 = parseAbi([
   "function approve(address,uint256) returns (bool)",
 ]);
 
-/** x402 pay-per-call GET: probe 402 → sign EIP-3009 → retry with PAYMENT-SIGNATURE. */
+/** x402 GET: probe 402 → sign EIP-3009 → retry with PAYMENT-SIGNATURE. */
 async function paidGet(tool, params) {
   const url = `${MCP}/${tool}?${new URLSearchParams(params)}`;
   const probe = await fetch(url);

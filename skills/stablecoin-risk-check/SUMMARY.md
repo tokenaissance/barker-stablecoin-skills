@@ -6,7 +6,7 @@ Stablecoin Risk Check assesses the safety profile of major stablecoins (USDT, US
 
 - An LLM runtime that can load Claude Code skills (OKX Wallet Agent, Claude Code, Cursor, or any MCP-compatible host).
 - No external API calls required — the risk knowledge base is embedded in the skill.
-- Optional: network access to Barker's x402-paid MCP at `mcp.barker.money` (per-call) if you want to cross-reference live yields with risk profiles.
+- Optional: network access to Barker's MCP at `mcp.barker.money` if you want to cross-reference live yields with risk profiles.
 
 ## Quick Start
 
@@ -18,7 +18,7 @@ Stablecoin Risk Check assesses the safety profile of major stablecoins (USDT, US
 ## API Access Model
 
 - **Endpoint**: optional only. Core risk content is curated and embedded; no live data call is required for risk assessment.
-- **Payment (if invoked)**: Live yield cross-referencing calls Barker's x402-paid MCP at `mcp.barker.money` — per-call x402 (~$0.001–$0.01), settling each HTTP 402 challenge. No API key; no free or anonymous tier.
+- **Payment (if invoked)**: Live yield cross-referencing calls Barker's MCP at `mcp.barker.money`, settling each HTTP 402 challenge.
 - **Data scope**: Only public stablecoin parameters are transmitted if a live yield lookup is performed. No wallet addresses, balances, signatures, private keys, or PII are sent or returned.
 
 ## Security: External Data Boundary

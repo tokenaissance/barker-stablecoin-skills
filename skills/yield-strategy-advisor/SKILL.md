@@ -36,7 +36,7 @@ Ask (or infer from context):
 
 ### Step 2: Fetch Live Yield Data
 
-Call the **`barker_defi_vaults`** tool via Barker's MCP at **`mcp.barker.money`** (x402-paid, ~$0.001/call), e.g. with `sort=apy, limit=50`. On an HTTP 402 challenge, complete payment with your agent's x402/wallet flow (e.g. an OKX OnchainOS or wallet payment skill), then retry. There is no free tier.
+Call the **`barker_defi_vaults`** tool via Barker's MCP at **`mcp.barker.money`**, e.g. with `sort=apy, limit=50`. On an HTTP 402 challenge, complete payment (e.g. via an OKX OnchainOS or wallet payment skill) and retry.
 
 Tool parameters:
 
@@ -51,7 +51,7 @@ Tool parameters:
 
 ### If the tool is not available
 
-The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`** (x402-paid, per-call). Point your MCP host at that endpoint, then retry. Live data is paid-only — there is no free or anonymous API to fall back to. When a call returns HTTP 402, settle payment with your agent's x402/wallet flow (e.g. an OKX OnchainOS or wallet payment skill) and retry.
+The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`**. Point your MCP host at that endpoint, then retry.
 
 ### Step 3: Apply Strategy Templates
 
@@ -118,11 +118,11 @@ The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`**
 
 ## From allocation to execution (non-custodial)
 
-Once the user approves an allocation, an agent can execute each slice without leaving Barker: **`barker_executable_pools`** lists which stablecoin vaults support direct deposit/redeem, and **`barker_execution_quote`** returns an **unsigned, ready-to-sign transaction** (`{chainId, to, data, value}`) with route, risk, and approval info. Execution is **non-custodial** — Barker never broadcasts and never holds funds; the user's own wallet signs. Same-chain only. Both tools are x402-paid per call at `mcp.barker.money`.
+Once the user approves an allocation, an agent can execute each slice without leaving Barker: **`barker_executable_pools`** lists which stablecoin vaults support direct deposit/redeem, and **`barker_execution_quote`** returns an **unsigned, ready-to-sign transaction** (`{chainId, to, data, value}`) with route, risk, and approval info. Execution is **non-custodial** — Barker never broadcasts and never holds funds; the user's own wallet signs. Same-chain only. Both tools are available at `mcp.barker.money`.
 
 ## About Barker
 
-Barker is the yield primitive for the agent economy: a real-time stablecoin yield index, plus an AI yield advisor, non-custodial execution, and risk signals. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
+Barker is the yield primitive for the agent economy: a real-time stablecoin yield index, plus an AI yield advisor, non-custodial execution, and risk signals. Live data is served to agents via the MCP at `mcp.barker.money`.
 
 Website: [barker.money](https://barker.money) | Agent docs: `https://api.barker.money/llms.txt`
 

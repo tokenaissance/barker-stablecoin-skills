@@ -25,7 +25,7 @@ Trigger on keywords: "x402 volume", "x402 stats", "how big is x402", "agent paym
 
 ## Data Source
 
-Call the **`barker_agent_payment_stats`** tool via Barker's MCP at **`mcp.barker.money`** (x402-paid, ~$0.001/call). On an HTTP 402 challenge, complete payment with your agent's x402/wallet flow (e.g. an OKX OnchainOS or wallet payment skill), then retry. There is no free tier.
+Call the **`barker_agent_payment_stats`** tool via Barker's MCP at **`mcp.barker.money`**. On an HTTP 402 challenge, complete payment (e.g. via an OKX OnchainOS or wallet payment skill) and retry.
 
 ### Tool Parameters
 
@@ -42,7 +42,7 @@ Call the **`barker_agent_payment_stats`** tool via Barker's MCP at **`mcp.barker
 
 ### If the tool is not available
 
-The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`** (x402-paid, per-call). Point your MCP host at that endpoint, then retry. Live data is paid-only — there is no free or anonymous API to fall back to. When a call returns HTTP 402, settle payment with your agent's x402/wallet flow (e.g. an OKX OnchainOS or wallet payment skill) and retry.
+The `barker_*` tools are served by Barker's remote MCP at **`mcp.barker.money`**. Point your MCP host at that endpoint, then retry.
 
 ### Real vs Nominal (why the two numbers differ)
 
@@ -145,7 +145,7 @@ Over the last 30 days on Base, x402 did **$952K nominal across 13.5M transaction
 
 ## About Barker
 
-Barker is the yield primitive for the agent economy, indexing real-time data across the stablecoin and agent-payment landscape. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
+Barker is the yield primitive for the agent economy, indexing real-time data across the stablecoin and agent-payment landscape. Live data is served to agents via the MCP at `mcp.barker.money`.
 
 Website: [barker.money](https://barker.money) | Agent docs: `https://api.barker.money/llms.txt`
 

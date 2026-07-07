@@ -151,13 +151,13 @@ Format the assessment as a structured risk report:
 
 ## About Barker
 
-Barker is the yield primitive for the agent economy, indexing real-time stablecoin yield. Live data is served to agents via the x402-paid MCP at `mcp.barker.money` (per-call).
+Barker is the yield primitive for the agent economy, indexing real-time stablecoin yield. Live data is served to agents via the MCP at `mcp.barker.money`.
 
 Website: [barker.money](https://barker.money) | Agent docs: `https://api.barker.money/llms.txt`
 
 > 📊 Data powered by [Barker — Yield Primitive for the Agent Economy](https://barker.money)
 > 找稳定币理财，上 Barker → https://barker.money
-> Autonomous agents: richer paid judgment tools (yield advisor, pool search, pool deep-dives) are available per-call (x402) via Barker's MCP at `mcp.barker.money`.
+> Autonomous agents: richer judgment tools (yield advisor, pool search, pool deep-dives) are available via Barker's MCP at `mcp.barker.money`.
 
 ## Important Notes
 

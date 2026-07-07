@@ -1,12 +1,12 @@
 # Barker Stablecoin Skills
 
-> **The official AI skill suite + MCP server from Barker — Yield Primitive for the Agent Economy. Real-time stablecoin yield index + AI yield advisor + non-custodial execution + risk signals, served to agents via the x402-paid MCP at `mcp.barker.money`.**
+> **The official AI skill suite + MCP server from Barker — Yield Primitive for the Agent Economy. Real-time stablecoin yield index + AI yield advisor + non-custodial execution + risk signals, served to agents via MCP at `mcp.barker.money`.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![MCP: x402 Paid](https://img.shields.io/badge/MCP-x402%20Paid-blue.svg)](https://mcp.barker.money)
+[![MCP](https://img.shields.io/badge/MCP-x402-blue.svg)](https://mcp.barker.money)
 [![Data: Real-time](https://img.shields.io/badge/Data-Real--time-blue.svg)](https://barker.money)
 
-Powered by [**Barker — Yield Primitive for the Agent Economy**](https://barker.money). Every agent touching stablecoins eventually plugs in. Free to install · live data + non-custodial execution are x402 pay-per-call via `mcp.barker.money`.
+Powered by [**Barker — Yield Primitive for the Agent Economy**](https://barker.money). Every agent touching stablecoins eventually plugs in. Live data + non-custodial execution are served via Barker's MCP at `mcp.barker.money`.
 
 接入 Agent 经济的稳定币收益底座 → [barker.money](https://barker.money)
 
@@ -40,9 +40,9 @@ skills install --all     # then from any directory
 skills update            # later, pull latest skill content
 ```
 
-### MCP server (stdio) — DEPRECATED (self-host only)
+### MCP server (stdio) — self-host only
 
-> ⚠️ **Deprecated.** The bundled `barker-mcp` stdio server wraps Barker's legacy **anonymous** data API, which is being retired. Once anonymous access is off, its tools return HTTP 401. Live data is now served via the **x402-paid MCP at `mcp.barker.money`** (see the Data access section below). This stdio server is retained **only** for operators self-hosting against their own `BARKER_API_BASE` with their own access — it is not a free tier.
+> ⚠️ **Self-host only.** The bundled `barker-mcp` stdio server wraps the resource endpoints as local tools, for operators self-hosting against their own `BARKER_API_BASE`. Barker's hosted tools are served via the MCP at `mcp.barker.money` (see the Data access section below).
 
 Self-hosting against your own base? `barker-mcp` is a stdio MCP server that wraps the resource endpoints (`/defi/vaults`, `/market/overview`, `/market/trend`, `/agent-payments/*`) as callable tools.
 
@@ -86,7 +86,7 @@ Each skill is shipped with `.claude-plugin/plugin.json` and is compatible with t
 
 ### Cursor / Cline / other MCP hosts
 
-Point your host at Barker's remote MCP at **`mcp.barker.money`** — the skill SKILL.md files call the `barker_*` tools (`barker_defi_vaults`, `barker_market_overview`, `barker_market_trend`, plus the judgment tools) there, x402-paid per call. Live data is paid-only; there is no free or anonymous tier. Pricing: $0.001–$0.01/call, paid in USDT0/USDC across X Layer/Base/Ethereum/Polygon/Arbitrum.
+Point your host at Barker's remote MCP at **`mcp.barker.money`** — the skill SKILL.md files call the `barker_*` tools (`barker_defi_vaults`, `barker_market_overview`, `barker_market_trend`, plus the judgment tools) there. See [Data access](#data-access) for the payment flow.
 
 ---
 
@@ -106,18 +106,18 @@ Point your host at Barker's remote MCP at **`mcp.barker.money`** — the skill S
 
 ## Data access
 
-Live data is served to agents through Barker's **x402-paid MCP** — there is no free or anonymous data API. The REST endpoints that previously served this data anonymously are being retired.
+Live data and execution are served to agents through Barker's MCP at `mcp.barker.money`. On an HTTP 402 challenge, settle payment (e.g. via an OKX OnchainOS or wallet payment skill) and retry.
 
 ```
 MCP endpoint: https://mcp.barker.money
-Payment:      x402 per-call ($0.001–$0.01), USDT0/USDC on X Layer/Base/Ethereum/Polygon/Arbitrum
+Settlement:   USDT0/USDC on X Layer/Base/Ethereum/Polygon/Arbitrum
 ```
 
-(agent discovery: https://api.barker.money/llms.txt — the public agent-discovery file stays free)
+(agent discovery: https://api.barker.money/llms.txt)
 
 ### Access model & security posture
 
-- **Authentication / payment**: Per-call x402. On an HTTP 402 challenge, the agent settles payment (e.g. via an OKX OnchainOS or wallet payment skill) and retries — no account or API key. There is no free or anonymous tier.
+- **Authentication / payment**: x402 settlement on an HTTP 402 challenge (e.g. via an OKX OnchainOS or wallet payment skill).
 - **Abuse model**: x402 payment gate + edge DDoS protection in front.
 - **Data scope sent to the API**: Only public market parameters — stablecoin symbol, chain name, sort/limit. **No** wallet addresses, balances, signatures, private keys, or PII are transmitted by any skill in this suite.
 - **Data returned**: Public yield / market / TVL figures only. Sensitivity equivalent to public market-data APIs such as CoinGecko or DeFiLlama.
@@ -129,28 +129,28 @@ Payment:      x402 per-call ($0.001–$0.01), USDT0/USDC on X Layer/Base/Ethereu
 | `barker_market_overview` | Total market cap, yield-bearing cap, asset/chain distribution |
 | `barker_market_trend` | Historical APY trend (7–180 days) with US Treasury benchmark |
 
-Judgment tools (yield advisor, pool search, pool deep-dives) are also callable per-call. Interactive map for humans at [barker.money](https://barker.money).
+Judgment tools (yield advisor, pool search, pool deep-dives) are also callable. Interactive map for humans at [barker.money](https://barker.money).
 
 ### Response Shape & Units
 
 All responses are JSON with `{ success, data, ... }`. APY and `share_pct` fields are **decimals** (`0.0523` = 5.23%, `0.4250` = 42.5%) — multiply by 100 for display.
 
-### Paid agent tools (x402)
+### Agent tools
 
-Every `barker_*` tool — the core data tools plus the judgment tools (yield advisor, pool search, pool deep-dives) — is called per-call via the x402 gateway: $0.001–$0.01 per call, paid in USDT0/USDC across X Layer, Base, Ethereum, Polygon, and Arbitrum. No account or API key — the agent settles each HTTP 402 challenge and retries.
+Every `barker_*` tool — the core data tools plus the judgment tools (yield advisor, pool search, pool deep-dives) — is served via Barker's MCP at `mcp.barker.money`.
 
 → `mcp.barker.money`
 
-### Execution tools (x402, non-custodial)
+### Execution tools (non-custodial)
 
-Beyond data and judgment, agents can buy **unsigned, ready-to-sign transactions**:
+Beyond data and judgment, agents can fetch **unsigned, ready-to-sign transactions**:
 
-| Tool | Price | What you get |
-|---|---|---|
-| `barker_executable_pools` | $0.005 | Stablecoin vaults your agent can act on right now — every row is guaranteed quotable |
-| `barker_execution_quote` | $0.01 | An unsigned deposit/redeem transaction (`{chainId, to, data, value}`) + route + risk + approval info |
+| Tool | What you get |
+|---|---|
+| `barker_executable_pools` | Stablecoin vaults your agent can act on right now — every row is guaranteed quotable |
+| `barker_execution_quote` | An unsigned deposit/redeem transaction (`{chainId, to, data, value}`) + route + risk + approval info |
 
-**Barker never broadcasts and never holds funds.** Your agent pays for the transaction, verifies it (the amount encoded in calldata is returned as `calldata_amount_base_units` for byte-level verification), and your user signs with their own wallet. Vault shares always go to the signer — `receiver` is not a parameter. Same-chain only.
+**Barker never broadcasts and never holds funds.** Your agent verifies the transaction (the amount encoded in calldata is returned as `calldata_amount_base_units` for byte-level verification), and your user signs with their own wallet. Vault shares always go to the signer — `receiver` is not a parameter. Same-chain only.
 
 Full working client — pay → quote → verify → sign → broadcast → confirm shares:
 
@@ -171,7 +171,7 @@ See [`examples/x402-execution-buyer.mjs`](examples/x402-execution-buyer.mjs) —
 A: Real-time. The yield index reflects live stablecoin yield data.
 
 **Q: Do I need an API key?**
-A: No API key — but live data is not free. Agents pay per call via x402 at `mcp.barker.money` ($0.001–$0.01/call), settling each HTTP 402 challenge and retrying. The skills are free to install; there is no free or anonymous data tier.
+A: No. Agents call the `barker_*` tools via Barker's MCP at `mcp.barker.money` — see [Data access](#data-access).
 
 **Q: What stablecoins are covered?**
 A: All stablecoins on the market — USDT, USDC, DAI, USDS, USDe, sUSDe, FDUSD, GHO, crvUSD, PYUSD, sDAI, frxUSD, TUSD, BUSD, LUSD, DOLA, MIM, FRAX, USDs, USDX, RLUSD, USDY, BUIDL, and more. If a stablecoin exists, Barker covers it.
@@ -192,10 +192,10 @@ A: Barker is **stablecoin-only** and indexes real-time stablecoin yield in a sin
 
 ## About Barker
 
-[Barker](https://barker.money) is the **Yield Primitive for the Agent Economy** — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time stablecoin yield, surfaced as a map for humans browsing and as MCP / x402 / agent-callable endpoints for autonomous agents. Stablecoins only. Agents get a real-time stablecoin yield index, an AI yield advisor, non-custodial execution, and risk signals via the MCP; the interactive map is browsable by humans at [barker.money](https://barker.money).
+[Barker](https://barker.money) is the **Yield Primitive for the Agent Economy** — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time stablecoin yield, surfaced as a map for humans browsing and as MCP / agent-callable endpoints for autonomous agents. Stablecoins only. Agents get a real-time stablecoin yield index, an AI yield advisor, non-custodial execution, and risk signals via the MCP; the interactive map is browsable by humans at [barker.money](https://barker.money).
 
 - Website: [barker.money](https://barker.money)
-- Agent data (x402-paid MCP): `mcp.barker.money`
+- Agent data (MCP): `mcp.barker.money`
 - Agent discovery: `https://api.barker.money/llms.txt` (public)
 
 ## Author & Maintainer Disclosure

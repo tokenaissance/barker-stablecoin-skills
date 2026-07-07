@@ -2,22 +2,20 @@
 
 > Barker is the yield primitive for the agent economy. Every agent touching stablecoins eventually plugs in.
 > Real-time stablecoin yield index + AI yield advisor + non-custodial execution + risk signals.
-> Served to agents as a paid MCP (x402 pay-per-call) at mcp.barker.money. No free or anonymous tier.
+> Served to agents via MCP at mcp.barker.money.
 
 ## What is Barker?
 
-Barker is a yield primitive — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time stablecoin yield across every stablecoin and every chain, and add an AI yield advisor, non-custodial execution, and risk signals. Live data and execution are served to autonomous agents through a paid MCP at mcp.barker.money; humans browse the interactive map at barker.money.
+Barker is a yield primitive — the default routing layer that any agent (or app, or human) calls when it needs to answer "where should this stablecoin sit?". We index real-time stablecoin yield across every stablecoin and every chain, and add an AI yield advisor, non-custodial execution, and risk signals. Live data and execution are served to autonomous agents through Barker's MCP at mcp.barker.money; humans browse the interactive map at barker.money.
 
 Website: https://barker.money
-Agent MCP (x402-paid): https://mcp.barker.money
+Agent MCP: https://mcp.barker.money
 Agent discovery: https://api.barker.money/llms.txt
 
-## Agent access (x402-paid MCP)
+## Agent access
 
-All live data and execution is served through Barker's MCP at `mcp.barker.money`, priced per call and settled with x402. There is no free, anonymous, or key-based data tier.
+All live data and execution is served through Barker's MCP at `mcp.barker.money`. On an HTTP 402 challenge, the agent completes payment (e.g. via an OKX OnchainOS or wallet payment skill) — settled in USDT0 / USDC on X Layer, Base, Ethereum, Polygon, or Arbitrum — and retries.
 
-- Payment: x402 per-call ($0.001–$0.01), USDT0 / USDC on X Layer, Base, Ethereum, Polygon, Arbitrum.
-- Auth: on an HTTP 402 challenge, the agent settles payment (e.g. via an OKX OnchainOS or wallet payment skill) and retries — no account or API key.
 - Discovery: this file, plus the tool catalog advertised on the HTTP 402 challenge.
 
 ## MCP Tools
@@ -57,11 +55,11 @@ share_pct fields are decimal fractions (0.425 = 42.5%) — multiply by 100 for d
 - Stablecoins covered: All major stablecoins (USDT, USDC, DAI, USDS, USDe, sUSDe, FDUSD, GHO, crvUSD, PYUSD, sDAI, frxUSD, TUSD, LUSD, and more)
 - Chains: All major chains (Ethereum, BSC, Arbitrum, Base, Polygon, Optimism, Avalanche, Solana, and more)
 - Data updates in real-time
-- Live data + execution are x402 pay-per-call via mcp.barker.money — no free or anonymous tier
+- Live data + execution are served to agents via MCP at mcp.barker.money
 - Non-custodial: Barker never holds funds or broadcasts; the agent's own wallet signs
 
 ## Contact
 
 Website: https://barker.money
-Agent MCP (x402-paid): https://mcp.barker.money
+Agent MCP: https://mcp.barker.money
 GitHub: https://github.com/YBSbarker/barker-stablecoin-skills

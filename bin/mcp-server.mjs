@@ -1,15 +1,10 @@
 #!/usr/bin/env node
-// barker-mcp — stdio MCP server wrapping the LEGACY Barker anonymous data API.
+// barker-mcp — legacy stdio MCP server (self-host only).
 //
-// ============================================================================
-//  ⚠️  DEPRECATED — DO NOT USE FOR NEW INTEGRATIONS
-//  Barker is retiring the free/anonymous data API that this server depends on.
-//  Once anonymous access is off, every call below returns HTTP 401.
-//  Live data is now served via the PAID x402 MCP at https://mcp.barker.money
-//  (per-call, ~$0.001–$0.01, USDT0/USDC). Point your agent there instead.
-//  This stdio server is retained ONLY for operators self-hosting against their
-//  own BARKER_API_BASE with their own access — it is NOT a supported free tier.
-// ============================================================================
+// For agent integrations, point your agent at Barker's MCP at
+// https://mcp.barker.money (the barker_* tools; discover via this repo's
+// llms.txt / SKILL.md). This stdio server is retained only for operators
+// self-hosting against their own BARKER_API_BASE.
 //
 // Exposes 4 tools (resource-domain endpoints, no version/audience markers):
 //   - barker_defi_vaults          → /defi/vaults
