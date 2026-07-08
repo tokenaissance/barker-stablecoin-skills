@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "money.barker/stablecoin-yield",
+  "description": "Real-time stablecoin yield index + AI yield advisor + non-custodial execution. Rank vaults by APY/TVL, market overview & trend vs T-bills, pool search/detail/history, cross-chain routes, and ready-to-sign deposit/redeem quotes. For agents, apps, and businesses (payment companies, on/off-ramps, treasuries) parking idle stablecoins for yield.",
+  "version": "1.0.0",
+  "websiteUrl": "https://barker.money",
+  "repository": {
+    "url": "https://github.com/YBSbarker/barker-stablecoin-skills",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.barker.money"
+    }
+  ]
+}
