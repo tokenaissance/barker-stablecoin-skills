@@ -11,7 +11,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mcp.barker.money"
+      "url": "https://mcp.barker.money/mcp"
     }
   ]
 }
