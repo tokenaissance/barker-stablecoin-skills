@@ -27,4 +27,7 @@ done
 # package.json parseable
 node -e "require('./package.json')" > /dev/null || { echo "✗ package.json invalid"; exit 1; }
 
+# Regenerate llms-full.txt from current SKILL.md files (avoid manual drift)
+node scripts/gen-llms-full.mjs
+
 echo "✓ build OK — $SKILL_COUNT skills, bins ready"
